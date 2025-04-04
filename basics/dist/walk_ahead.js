@@ -31,10 +31,19 @@ function completeOrder(orderId) {
     order.status = "completed";
     return order;
 }
+// getPizzaDetail
+function getPizzaDetail(identifier) {
+    if (typeof identifier === "string") {
+        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
+    }
+    else {
+        return menu.find(pizza => pizza.id === identifier);
+    }
+}
 // Corrected pizza objects (using `price` instead of `cost`)
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "Cake Pineapple", price: 12 });
-addNewPizza({ name: "Spicy Sausage", price: 11 });
+addNewPizza({ id: 1, name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({ id: 2, name: "Cake Pineapple", price: 12 });
+addNewPizza({ id: 3, name: "Spicy Sausage", price: 11 });
 placeOrder("Chicken Bacon Ranch");
 completeOrder(1); // Pass as a number, not a string
 console.log("Menu:", menu);

@@ -52,3 +52,15 @@ function displayInfo(person:person) {
 
 let ages: number[] = [100, 101]
 ages.push(33)// 33 must be a number 
+
+
+
+// literals
+
+let myName1 = "Bob" // we can change the value of this variable
+const myName2 = "Bob" // not allowed to reassign this variable
+
+// Unions
+
+type UserRole = "guest" | "member" | "admin"
+let userRole:UserRole = "guest"
