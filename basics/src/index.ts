@@ -1,51 +1,54 @@
-const menu = [ // array with objects inside
-    { name: "Margherita", price: 8 },
-    { name: "Pepperoni", price: 10 },
-    { name: "Hawaiian", price: 10 },
-    { name: "Veggie", price: 9 }, 
-];
+let myName: string = "Bob"
+let numberofWheels: number = 4
+let isStudent: boolean = false
 
-let cashInRegister = 100; // balance
-let nextOrderId = 1; // order IDs
-const orderQueue: { id: number; pizza: { name: string; price: number }; status: string }[] = []; // array queue 
+// Custom types in ts
 
-function addNewPizza(pizzaObject: { name: string; price: number }) {
-    menu.push(pizzaObject); // add the pizza object to the menu
+type food = string
+let favoriteFood: food = 'cake'
+
+type Address = {
+    street: string,
+    city: string,
+    country:string,
 }
 
-function placeOrder(pizzaName: string) {
-    const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName);
-    if (!selectedPizza) {
-        console.error(`${pizzaName} does not exist in the menu`);
-        return;
+type person = {
+    name: string
+    age: 42
+    isStudent: boolean
+    address?: Address // this makes sure that address is an optional property
+}
+
+let person: person = {
+    name: "joe",
+    age: 42,
+    isStudent:true,
+    // address: { 
+    //     street: "kamukunji",
+    //     city: "Nairobi",
+    //     country:"Kenya"
+
+    // }
+
+}
+
+let person1: person = {
+    name: "joe",
+    age: 42,
+    isStudent:true,
+    address: {
+        street: "Naromoru",
+        city: "Nakuru",
+        country:"Kenya"
     }
-    cashInRegister += selectedPizza.price; // update the cash register
-    const newOrder = { id: nextOrderId++, pizza: selectedPizza, status: "ordered" };
-    orderQueue.push(newOrder); // add to order queue
-    return newOrder; // return the latest completed order
 }
 
-function completeOrder(orderId: number) { // checks if an order is complete
-    const order = orderQueue.find(order => order.id === orderId);
-    if (!order) {
-        console.error(`Order ID ${orderId} not found.`);
-        return;
-    }
-    order.status = "completed";
-    return order;
+function displayInfo(person:person) {
+    console.log(`${person.name} lives at ${person.address?.street}`)
 }
 
-// Corrected pizza objects (using `price` instead of `cost`)
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "Cake Pineapple", price: 12 });
-addNewPizza({ name: "Spicy Sausage", price: 11 });
+// typing arrays in ts
 
-placeOrder("Chicken Bacon Ranch");
-completeOrder(1); // Pass as a number, not a string
-
-console.log("Menu:", menu);
-console.log("Cash in register:", cashInRegister);
-console.log("Order queue:", orderQueue);
-
-
-console.log("Hello world, This is the Mystical Typescript")
+let ages: number[] = [100, 101]
+ages.push(33)// 33 must be a number 
