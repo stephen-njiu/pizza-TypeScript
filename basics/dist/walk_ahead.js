@@ -1,13 +1,17 @@
 "use strict";
-const menu = [
-    { name: "Margherita", price: 8 },
-    { name: "Pepperoni", price: 10 },
-    { name: "Hawaiian", price: 10 },
-    { name: "Veggie", price: 9 },
-];
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPizzaDetail = getPizzaDetail;
 let cashInRegister = 100; // balance
 let nextOrderId = 1; // order IDs
+let nextPizzaId = 1; // pizza ids
+const menu = [
+    { id: nextPizzaId++, name: "Margherita", price: 8 },
+    { id: nextPizzaId++, name: "Pepperoni", price: 10 },
+    { id: nextPizzaId++, name: "Hawaiian", price: 10 },
+    { id: nextPizzaId++, name: "Veggie", price: 9 },
+];
 const orderQueue = []; // array queue 
+// void functions does not return anything
 function addNewPizza(pizzaObject) {
     menu.push(pizzaObject); // add the pizza object to the menu
 }
@@ -36,14 +40,18 @@ function getPizzaDetail(identifier) {
     if (typeof identifier === "string") {
         return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
     }
-    else {
+    else if (typeof identifier === "number") {
         return menu.find(pizza => pizza.id === identifier);
+    }
+    else {
+        console.error("Undefined type. Parameter must be either a string or a number ");
+        return;
     }
 }
 // Corrected pizza objects (using `price` instead of `cost`)
-addNewPizza({ id: 1, name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ id: 2, name: "Cake Pineapple", price: 12 });
-addNewPizza({ id: 3, name: "Spicy Sausage", price: 11 });
+addNewPizza({ id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({ id: nextPizzaId++, name: "Cake Pineapple", price: 12 });
+addNewPizza({ id: nextPizzaId++, name: "Spicy Sausage", price: 11 });
 placeOrder("Chicken Bacon Ranch");
 completeOrder(1); // Pass as a number, not a string
 console.log("Menu:", menu);

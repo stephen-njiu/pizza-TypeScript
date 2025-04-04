@@ -34,3 +34,17 @@ ages.push(33); // 33 must be a number
 let myName1 = "Bob"; // we can change the value of this variable
 const myName2 = "Bob"; // not allowed to reassign this variable
 let userRole = "guest";
+// TS= Specific Types any...
+let a1 = 2;
+// a1.toLowerCase() // possible because of any .... DON'T USE ANY  
+// UNKNOWN type
+// GENERICS
+const gameScores = [14, 2, 33, 42, 59];
+const favoriteThings = ["raindrops on roses", "whiskers on kittens", "bright copper kettles", "warn woolen mittens"];
+const voters = [{ name: "Alice", age: 23 }, { name: "Bob", age: 43 }];
+function getLastItem(array) {
+    return array[array.length - 1];
+}
+console.log(getLastItem(gameScores));
+console.log(getLastItem(favoriteThings));
+console.log(getLastItem(voters));
