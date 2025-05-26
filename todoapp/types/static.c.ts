@@ -50,6 +50,10 @@ declare module '*.module.css' {
   declare module '*.jpeg' {
     const ref: string;
     export default ref;
+
+
+
+    
   }
   declare module '*.png' {
     const ref: string;
